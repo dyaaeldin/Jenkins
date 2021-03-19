@@ -79,8 +79,8 @@ pipeline {
           when { branch "feature/*" }
           steps {
                script{
-                  git branch: 'feature/testtarget', credentialsId: 'upwork', url: ''
-                  withCredentials([usernamePassword(credentialsId: 'upwork', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]){    
+                  git branch: 'feature/testtarget', credentialsId: 'cred1', url: ''
+                  withCredentials([usernamePassword(credentialsId: 'cred1', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]){    
                     sh ''' git config --local credential.helper "!f() { echo username=\\$GIT_USERNAME; echo password=\\$GIT_PASSWORD; }; f"
                          '''
                     sh "git checkout $env.BRANCH_NAME"     
